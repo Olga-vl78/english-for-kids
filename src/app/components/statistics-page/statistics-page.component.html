@@ -1,0 +1,50 @@
+  <main class="main">
+    <div class="main__statistics-wrapper">
+
+      <div class="page-buttons">
+        <button class="repeat-button btn"><a class="repeat-button-link" routerLink="/statistics/train">Repeat difficult words</a></button>
+        <button class="reset-button btn" (click)="clearStatisticData()">Reset statistics</button>
+      </div>
+
+      <table class="statistics__table">
+        <thead>
+          <tr class="statistics__table-header">
+            <th class="table-header__word" (click)="sortTableByString('word')"><p class="text">Word</th>
+            <th class="table-header__translation" (click)="sortTableByString('translation')"><p class="text">Translate</p></th>
+            <th class="table-header__category" (click)="sortTableByString('category')"><p class="text">Category</p></th>
+            <th class="table-header__clicks" (click)="sortTableByNum('clicks')"><p class="text">Clicks</p></th>
+            <th class="table-header__correct" (click)="sortTableByNum('correct')"><p class="text">Correct</p></th>
+            <th class="table-header__wrong" (click)="sortTableByNum('wrong')"><p class="text">Wrong</p></th>
+            <th class="table-header__errors" (click)="sortTableByNum('errors')"><p class="text">Errors,%</p></th>
+          </tr>
+        </thead>
+        <tbody class="statistics__table-body">
+          <tr *ngFor="let tableItem of tableData">
+            <td class="table-row__word">{{tableItem?.word}}</td>
+            <td class="table-row__translate">{{tableItem?.translation}}</td>
+            <td class="table-row__category">{{tableItem?.category}}</td>
+            <td class="table-row__clicks">{{tableItem?.clicks}}</td>
+            <td class="table-row__correct">{{tableItem?.correct}}</td>
+            <td class="table-row__wrong">{{tableItem?.wrong}}</td>
+            <td class="table-row__errors">{{tableItem?.errors}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <a class="github" href="https://github.com/Olga-vl78" target="_blank" rel="noopener noreferrer">Olga-vl78</a>
+
+      <a class="rss" href="https://rs.school/js/" target="_blank" rel="noopener noreferrer">
+        <span class="rss-wrap">
+        <img src="assets/svg/rss.svg" alt="rs-school logo">
+        <span class="rss-year">'21</span>
+      </span>
+      </a>
+    </div>
+  </footer>
+

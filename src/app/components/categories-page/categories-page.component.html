@@ -1,0 +1,37 @@
+  <main class="main" *ngIf="{isPlayMode: $isPlayMode | async} as data">
+    <h2 class="main__category-title">{{currentCategoryName}}</h2>
+    <div class="main__stars">
+      <div class="star" *ngFor="let answer of answers">
+        <img class='star-image' alt="star" [src]="answer ? 'assets/images/star-win.svg' : 'assets/images/star.svg' ">
+      </div>
+    </div>
+    <div class="main__wrap">
+      <div class="cards__container">
+        <ng-container *ngFor="let cardData of currentCards">
+          <app-play-card *ngIf="data.isPlayMode; else train" [cardData]="cardData" (cardClick)="onCardClick($event)"></app-play-card>
+          <ng-template #train>
+            <app-train-card [cardData]="cardData"></app-train-card>
+          </ng-template>
+        </ng-container>
+        <div class="cover" [ngClass]="!data.isPlayMode || isGame ? 'cover-hidden' : ''"></div>
+      </div>
+      <div class="start-game__btn-wrap">
+        <button class="start-game__btn" [ngClass]="{'button__game-mode': data.isPlayMode, 'repeat__btn': isGame}" (click)="onStartGame()">Start game</button>
+      </div>
+      <app-result-game *ngIf="isFinished" [errorsCounter]="errorsCounter" (close)="onResultsClose()"></app-result-game>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <a class="github" href="https://github.com/Olga-vl78" target="_blank" rel="noopener noreferrer">Olga-vl78</a>
+
+      <a class="rss" href="https://rs.school/js/" target="_blank" rel="noopener noreferrer">
+        <span class="rss-wrap">
+        <img src="assets/svg/rss.svg" alt="rs-school logo">
+        <span class="rss-year">'21</span>
+      </span>
+      </a>
+    </div>
+  </footer>
+

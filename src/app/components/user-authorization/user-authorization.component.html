@@ -1,0 +1,20 @@
+<main>
+  <div class="main__warpper">
+    <div #cover class="cover" (click)="onCoverClick()">
+      <form class="user__authorization" (click)="onFormClick($event)">
+        <div class="user__input-wrap">
+          <label>Name</label>
+          <input #inputLogin type="text" class="user__name user__input" placeholder="Enter your name"
+            pattern="^(?=.*\p{L})[^~?!@#$%*^()_—+=|.,:;/`'>&lt;&quot;]{1,30}$" required (change)="onGetLoginInputValue(inputLogin)">
+        </div>
+        <div class="user__input-wrap">
+          <label>Password</label>
+          <input #inputPassword type="text" class="user__password user__input" placeholder="Enter your password"
+            pattern="^(?=.*\p{L})[^~?!@#$%*^()_—+=|.,:;/`'>&lt;&quot;]{1,30}$" required (change)="onGetPasswordInputValue(inputPassword)">
+        </div>
+        <button type="button" class="submit-btn" (click)="onSubmit($event); cover.classList.add('hidden')">
+          <a class="submit-btn_link" routerLink="/admin/categories">Submit</a></button>
+      </form>
+    </div>
+  </div>
+</main>

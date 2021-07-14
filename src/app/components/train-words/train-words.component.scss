@@ -1,0 +1,84 @@
+.main {
+  min-height: 87vh;
+}
+
+.main__training-page-wrapper {
+  max-width: 1200px;
+  margin: 50px auto;
+}
+
+.main__training-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.main__training-page-text {
+  margin-top: 50px;
+  font-size: 30px;
+  font-weight: bold;
+  color: orange;
+  text-align: center;
+}
+
+.text-hidden {
+  display: none;
+}
+
+.footer {
+  box-shadow: 0 .1rem 1.5rem rgba(65, 58, 58, 0.3);
+}
+
+.footer-container {
+	padding: 0 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.github {
+	display: block;
+	width: 120px;
+	height: 45px;
+	padding-left: 45px;
+	background-image: url('~src/assets/svg/github.svg');
+	background-size: 35px;
+	background-repeat: no-repeat;
+	background-position: left center;
+	line-height: 45px;
+	color: #000;
+	font-size: 16px;
+	transition: 0.3s;
+  opacity: .5;
+}
+
+
+.rss {
+	display: block;
+	position: relative;
+	width: 86px;
+	height: 32px;
+	padding-right: 111px;
+  opacity: .5;
+}
+
+.rss-wrap {
+  display: flex;
+}
+
+.rss-year {
+	font-size: 21px;
+	letter-spacing: -2px;
+	color: #000;
+	line-height: 0.9;
+	font-weight: bold;
+	transition: 0.3s;
+  text-decoration: none;
+}
+
+

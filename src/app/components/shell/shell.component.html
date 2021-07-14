@@ -1,0 +1,77 @@
+<header class="header" *ngIf="{segments: (activatedRoute.firstChild?.url | async) || []} as data">
+  <div class="header__wrapper">
+
+    <nav #headerNav class="header__nav" [ngClass]="isActive ? 'header__nav_active' : ''">
+      <div class="header__nav-close" (click)="onMenuOrCoverClick()">
+        <span class="header__nav-close-line"></span>
+        <span class="header__nav-close-line"></span>
+      </div>
+      <ul class="header__nav-items">
+        <li class="header__nav-item" (click)="onMenuOrCoverClick()">
+          <a routerLink="/main" class="header__nav-link" routerLinkActive="active">
+            <img class="header__nav-link_img" src="assets/svg/home-icon.svg">
+            <span class="header__nav-link-content nav-link-main">Main page</span>
+          </a>
+        </li>
+
+        <li class="header__nav-item" *ngFor="let categoryData of categoriesData" (click)="onMenuOrCoverClick()">
+          <a routerLink="/categories/{{categoryData?.id}}" class="header__nav-link" routerLinkActive="active">
+            <img class="header__nav-link_img" [attr.src]="categoryData?.iconSrc">
+            <span class="header__nav-link-content">{{categoryData?.category}}</span>
+          </a>
+        </li>
+
+        <li class="header__nav-item" (click)="onMenuOrCoverClick()">
+          <a routerLink="/statistics" class="header__nav-link" routerLinkActive="active">
+            <img class="header__nav-link_img" src="assets/svg/statistics.svg">
+            <span class="header__nav-link-content nav-link_statistics">Statistics</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header__burger burger" (click)="onBurgerClick()">
+      <span class="burger__line burger__line_first"></span>
+      <span class="burger__line burger__line_second"></span>
+      <span class="burger__line burger__line-third"></span>
+    </div>
+
+    <h1 class="main-heading">English for kids</h1>
+    <div class="wrap">
+      <div class="header__toggle">
+        <input class="header__toggle-input" type="checkbox" id="toggle" [ngModel]="$isPlay | async"
+          (ngModelChange)="onToggleChangeMode($event)" />
+        <label for="toggle" class="header__toggle-slider"></label>
+      </div>
+
+      <div class="login-pic">
+        <a routerLink="/authorization" class="login-pic_link">
+          <img src="assets/images/login_ico.png" alt="login-icon" class="login-pic_img">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-cover" [ngClass]="data.segments[0]?.path === 'admin' ? 'header-cover_visible' : ''">
+      <div class="header-cover__wrap">
+        <div class="header-cover__heading">English for kids</div>
+        <div class="routers-wrap">
+          <div class="router-name">
+            <a routerLink="admin/categories" class="categories-link" routerLinkActive="active">
+              <span class="categories-link_content">Categories</span></a></div>
+          <div #routerNameCards class="router-name" title="Please, choose category in the table and click arrow button">
+            Cards</div>
+        </div>
+        <div class="logout-pic">
+          <a routerLink="/main" class="login-pic_link">
+            <img src="assets/images/logout-ico.png" alt="logout-icon" class="logout-pic_img">
+          </a>
+        </div>
+      </div>
+  </div>
+
+</header>
+<div>
+  <router-outlet></router-outlet>
+</div>
+<div class="cover-block" [ngClass]="isActive ? '' : 'cover-block_hidden'" (click)="onMenuOrCoverClick()"></div>

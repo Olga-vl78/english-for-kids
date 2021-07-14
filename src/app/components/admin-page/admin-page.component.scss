@@ -1,0 +1,233 @@
+html {
+  box-sizing: border-box;
+}
+
+.main {
+  width: 100wh;
+  min-height: 87vh;
+  background-color:rgb(197, 193, 193);
+}
+
+.main__wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin__panel {
+  position: fixed;
+  top: calc(50vh - 250px);
+  left: calc(50vw - 250px);
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+  border: 10px solid gray;
+  border-radius: 15px;
+}
+
+
+.panel__ctagories-btn {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: gray;
+  border: 1px solid rgb(85, 83, 83);
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 .1rem 1.5rem rgba(65, 58, 58, 0.3);
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+  outline: none;
+  border: none;
+  background-image: none;
+  background-color: #fff;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+:focus::-moz-placeholder {
+  color: transparent;
+}
+
+:focus:-moz-placeholder {
+  color: transparent;
+}
+
+:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+input[type="text"] {
+  -webkit-appearance: none;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.rows__wrapper {
+  width: 500px;
+  height: 430px;
+  overflow: auto;
+}
+
+.inputs__wrap,
+.row__wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.row__wrap {
+  background-color: rgb(206, 199, 199);
+}
+
+.input__category-name,
+.input__category-cards-num,
+.row__category-name,
+.row__cards-num {
+  height: 30px;
+  border: 1px solid gray;
+}
+
+.input__category-name {
+  width: 92.2%;
+}
+
+.input__category-cards-num {
+  width: 34.4%;
+}
+
+.row__category-name,
+.row__cards-num {
+  background-color: #fff;
+}
+
+.row__category-name {
+  width: 48%;
+}
+
+.row__cards-num {
+  width: 24.4%;
+}
+
+.inputs__add-btn:hover,
+.row__edit-btn:hover,
+.row__delete-btn:hover,
+.row__save-btn:hover,
+.row__link-btn:hover {
+  background-color: rgb(240, 182, 23);
+}
+
+.row__edit-btn,
+.row__delete-btn,
+.inputs__add-btn,
+.row__save-btn,
+.row__link-btn {
+  outline: none;
+  width: 33px;
+  height: 30px;
+  border: 1px solid gray;
+  background-color: rgb(185, 176, 176);
+}
+
+.row__btn-pic,
+.input__btn-pic {
+  width: 30px;
+  height: 30px;
+}
+
+.row__btn-img,
+.input__btn-img {
+  width: 20px;
+  height: 20px;
+}
+
+.inputs__add-btn {
+  width: 39px;
+}
+
+.input-disabled {
+  pointer-events: none;
+  background-color: rgb(185, 176, 176);
+}
+
+.disabled-btn {
+  pointer-events: none;
+  opacity: .5;
+}
+
+
+.footer {
+  width: 100%;
+  box-shadow: 0 .1rem 1.5rem rgba(65, 58, 58, 0.3);
+  background-color: rgb(218, 213, 213);
+}
+
+.footer-container {
+	padding: 0 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.github {
+	display: block;
+	width: 120px;
+	height: 45px;
+	padding-left: 45px;
+	background-image: url('~src/assets/svg/github.svg');
+	background-size: 35px;
+	background-repeat: no-repeat;
+	background-position: left center;
+	line-height: 45px;
+	color: #000;
+	font-size: 16px;
+	transition: 0.3s;
+  opacity: .5;
+}
+
+
+.rss {
+	display: block;
+	position: relative;
+	width: 86px;
+	height: 32px;
+	padding-right: 111px;
+  opacity: .5;
+}
+
+.rss-wrap {
+  display: flex;
+}
+
+.rss-year {
+	font-size: 21px;
+	letter-spacing: -2px;
+	color: #000;
+	line-height: 0.9;
+	font-weight: bold;
+	transition: 0.3s;
+  text-decoration: none;
+}
+
+
+
+

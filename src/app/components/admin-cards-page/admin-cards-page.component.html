@@ -1,0 +1,85 @@
+<main class="main">
+  <div class="main__wrapper">
+    <div class="admin__panel">
+      <div class="panel__cards">"{{currentCategoryName}}" category cards</div>
+
+      <div class="inputs__outer-wrap">
+        <div class="inputs__inner-wrap">
+          <input #inputText type="text" class="input__card-word card-input" placeholder="Enter word"
+          [(ngModel)]="newCardWord" (input)="onInputValidation(inputText)">
+          <input type="text" class="input__card-translation card-input" placeholder="Enter word translation"
+            [(ngModel)]="newCardTranslation">
+          <input #inputValue type="file" class="input__card-pic_load card-input" (change)="onPictureLoad(inputValue)">
+          <input type="file" class="input__card-audio card-input" placeholder="Add audio" [(ngModel)]="newCardAudio">
+        </div>
+        <button class="inputs__add-btn" [ngClass]="{'disabled-btn': !isValid}"  (click)="onAddCard(inputText)"><span class="input__btn-pic">
+            <img class="input__btn-img" src="assets/images/add_icon.png" alt="edit-icon"></span></button>
+      </div>
+
+      <div #rows class="rows__wrapper" (scroll)="onScrollMove($event)">
+
+        <div class="row__wrap" *ngFor="let cardData of renderedCards; trackBy: identify">
+          <div class="row__inputs-wrap">
+            <input type="text" class="row__card-word"
+              [ngClass]="{'input-disabled': !cardInfoMap.get(cardData)?.editMode, 'input-disabled-highlighted': cardInfoMap.get(cardData)?.watchMode}"
+              [(ngModel)]="cardData.word">
+            <input type="text" class="row__card-translation"
+              [ngClass]="{'input-disabled': !cardInfoMap.get(cardData)?.editMode, 'input-disabled-highlighted': cardInfoMap.get(cardData)?.watchMode}"
+              [(ngModel)]="cardData.translation">
+            <div class="row__div-wrap">
+              <div class="file-input__wrap" [ngClass]="{'input-disabled': !cardInfoMap.get(cardData)?.editMode, 'input-disabled-highlighted': cardInfoMap.get(cardData)?.watchMode}">
+                <div class="file__wrap">
+                <label class="file-input__label" for="file-input">Choose</label>
+                <div class="file-input__add-btn"(click)="onAddFile(cardData)">Add</div>
+                <input #fileInput type="file" id="file-input" name="file" (change)="onPictureLoad(fileInput)">
+              </div>
+                <div class="row__card-pic"
+                [ngClass]="{'input-disabled': !cardInfoMap.get(cardData)?.editMode, 'input-disabled-highlighted': cardInfoMap.get(cardData)?.watchMode}">
+                  <img class="row__card-pic_img" [src]="cardData?.image">
+                </div>
+              </div>
+
+              <div class="row__card-audio"
+                [ngClass]="{'input-disabled': !cardInfoMap.get(cardData)?.editMode, 'input-highlighted': cardInfoMap.get(cardData)?.watchMode}"
+                (click)="onPlayIconClick(cardData.audioSrc)"></div>
+            </div>
+          </div>
+          <div class="buttons__wrap">
+            <button class="row__watch-btn" (click)="onWatchCard(cardData)">
+              <span class="row__btn-pic">
+                <img class="row__btn-img" src="assets/images/watch_icon.png" alt="watch-icon"></span>
+            </button>
+            <button class="row__edit-btn" (click)="onEditCard(cardData)">
+              <span class="row__btn-pic">
+                <img class="row__btn-img" src="assets/images/edit_icon.png" alt="edit-icon"></span>
+            </button>
+            <button class="row__save-btn" (click)="onSaveCard(cardData)">
+              <span class="row__btn-pic">
+                <img class="row__btn-img" src="assets/images/save_icon.png" alt="save-icon">
+              </span>
+            </button>
+            <button class="row__delete-btn" (click)="onDeleteCard(cardData)">
+              <span class="row__btn-pic">
+                <img class="row__btn-img" src="assets/images/delete_icon.png" alt="delete-icon"></span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+    <a class="github" href="https://github.com/Olga-vl78" target="_blank" rel="noopener noreferrer">Olga-vl78</a>
+
+    <a class="rss" href="https://rs.school/js/" target="_blank" rel="noopener noreferrer">
+      <span class="rss-wrap">
+      <img src="assets/svg/rss.svg" alt="rs-school logo">
+      <span class="rss-year">'21</span>
+    </span>
+    </a>
+  </div>
+</footer>
+

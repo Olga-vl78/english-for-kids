@@ -1,0 +1,6 @@
+<div class="card" [ngClass]="{'card__game-mode': $isPlay | async}">
+  <div class="card__pic" [ngStyle]="{backgroundImage: 'url(' + categoryData?.pictureSrc + ')'}">
+    <a class="card__link" routerLink="/categories/{{categoryData?.id}}"></a>
+  </div>
+  <a class="card__text" routerLink="/categories/{{categoryData?.id}}">{{categoryData?.category}}</a>
+</div>

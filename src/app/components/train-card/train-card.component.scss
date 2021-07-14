@@ -1,0 +1,117 @@
+
+  .game-card__wrapper {
+    transition: .9s all;
+    border-radius: 30px;
+    border-color: transparent;
+  }
+
+  .game-card {
+    width: 280px;
+    height: 260px;
+    position: relative;
+    background: linear-gradient(50deg,  rgb(19,221,187) 0%, rgba(243, 156, 50, 0.7) 100%);
+    border-radius: 30px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: .9s all ease;
+    box-shadow: 0 .3rem .7rem rgba(65, 58, 58, 0.7);
+  }
+
+  .game-card:hover {
+    box-shadow: 0 0.9rem 1rem rgba(65, 58, 58, 0.7);
+    cursor: pointer;
+  }
+
+  .game-card__pic,
+  .game-card__pic-back {
+    width: 250px;
+    height: 200px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    overflow: hidden;
+    transition: .9s all ease;
+   /*background-image: url(../../../../public/images/bird.jpg);*/
+    background-size: cover;
+    background-position: center;
+   }
+
+  .game-card__inner-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .game-card__pic-back::after {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 260px;
+
+  }
+
+
+
+  .game-card__front-side,
+  .game-card__back-side {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+.game-card__back-side {
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    }
+
+  .game-card__text,
+  .game-card__text-back {
+    font-size: 32px;
+    font-weight: 600;
+    color: #f8f6f6;
+    }
+
+.flipped {
+  transform: rotateY(180deg) translateX(-100%);
+  transform-origin: left;
+}
+
+.game-card__flip-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.rotate-img {
+    z-index: 5;
+    width: 40px;
+    height: 40px;
+    filter: invert(100%);
+}
+
+.rotate-img:hover {
+    filter: none;
+    opacity: .5;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.card-invisible {
+  display: none;
+}
+
+
+

@@ -1,0 +1,4 @@
+<div class="play-card" (click)="cardClick.emit(this)" [ngClass]="{'success-card_disabled': isSuccess}">
+  <div class="play-card__pic" [ngStyle]="{backgroundImage: 'url(' + cardData?.image + ')'}">
+  </div>
+</div>
