@@ -5,13 +5,14 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:be": "ts-node backend/app.ts",
+    "start": "ts-node backend/app.ts",
     "watch:be": "nodemon",
     "ng": "ng",
     "start:fe": "ng serve --proxy-config proxy.conf.js",
     "build:fe": "ng build",
     "watch:fe": "ng build --watch --configuration development",
-    "test:fe": "ng test"
+    "test:fe": "ng test",
+    "postinstall": "ng build"
   },
   "author": "",
   "license": "ISC",
