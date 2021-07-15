@@ -4,6 +4,7 @@ import { BackendService } from 'src/app/services/backend/backend.service';
 import { Subscription } from 'rxjs';
 import { ICategory } from 'src/app/interfaces/category';
 import { ICard } from 'src/app/interfaces/card';
+import { PagesDataService } from 'src/app/services/pages-data/pages-data.service';
 
 
 const LIMITS_CATEGORIES = 16;
@@ -26,6 +27,7 @@ export class AdminPageComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
+    private readonly pagesDataService: PagesDataService,
     private readonly backendService: BackendService
   ) { }
 

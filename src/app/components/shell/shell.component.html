@@ -59,7 +59,8 @@
           <div class="router-name">
             <a routerLink="admin/categories" class="categories-link" routerLinkActive="active">
               <span class="categories-link_content">Categories</span></a></div>
-          <div #routerNameCards class="router-name" title="Please, choose category in the table and click arrow button">
+          <div #routerNameCards class="router-name" title="Please, choose category in the table and click arrow button"
+          [ngClass]="data.segments[2]?.path === 'cards' ? 'router-active' : ''">
             Cards</div>
         </div>
         <div class="logout-pic">

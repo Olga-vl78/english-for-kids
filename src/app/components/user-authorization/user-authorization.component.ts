@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { response } from 'express';
 import { BackendService } from 'src/app/services/backend/backend.service';
 import { PagesDataService } from 'src/app/services/pages-data/pages-data.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -13,6 +14,8 @@ export class UserAuthorizationComponent implements OnInit {
 
   login: string = '';
   password: string = '';
+  isActiveBtn: boolean = false;
+  isUser: boolean = false;
 
   constructor(
     private readonly router: Router,
@@ -38,25 +41,35 @@ export class UserAuthorizationComponent implements OnInit {
   }
 
   onGetLoginInputValue(input: HTMLInputElement) {
-    this.login = input.value;
-    console.log(this.login)
+    if(input.validity.valid) {
+      this.login = input.value;
+    }
   }
 
   onGetPasswordInputValue(input: HTMLInputElement) {
-    this.password = input.value;
-    console.log(this.password)
+    if(input.validity.valid) {
+      this.password = input.value;
+    }
   }
 
   async onSubmit(event: Event) {
-    //debugger;
     this.pagesDataService.userHashedInfo = this.getHashInfo(this.login, this.password);
-    console.log(this.pagesDataService.userHashedInfo);
-    const status = await this.userService.getUser();
-    console.log('status', status)
-    if (status !== 'admin') {
-      event.preventDefault();
-      this.router.navigate(['/main']);
+    //const response = await this.userService.getUser();
+    //console.log('response', response)
+    //console.log(response.headers.get('Authorisation'));
+    console.log(this.login)
+    if (this.login !== '' && this.password !== '') {
+      this.isUser = true;
     }
+    else {
+      event.preventDefault();
+      this.isUser = false;
+      //this.router.navigate(['/main']);
+    }
+  }
+
+  onLogout() {
+    this.pagesDataService.userHashedInfo = '';
   }
 
 }

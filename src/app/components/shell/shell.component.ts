@@ -34,7 +34,7 @@ export class ShellComponent implements OnInit {
     return this.pagesDataService.$isPlayMode;
   }
 
-  async onGetCategoriesData() {
+   async onGetCategoriesData() {
     const categories = await this.backendService.getCategories();
     this.categoriesData = categories;
     return this.categoriesData;
@@ -46,6 +46,7 @@ export class ShellComponent implements OnInit {
 
   onBurgerClick() {
     this.isActive = true;
+    this.onGetCategoriesData();
   }
 
   onMenuOrCoverClick() {

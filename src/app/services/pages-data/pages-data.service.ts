@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
-import {ICategoryCard} from "../../components/category-card/category-card.types";
 
 @Injectable({
   providedIn: 'root'

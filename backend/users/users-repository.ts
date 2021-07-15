@@ -9,8 +9,8 @@ export class UsersRepository {
     }
 
     getUser(hash: string) {
-        const status = this.dbStore.users.find((user) => user.hash === hash);
-        console.log(status)
-        return Promise.resolve(status);
+        const userAuth = this.dbStore.users.find((user) => user.hash === hash);
+        console.log(userAuth)
+        return Promise.resolve(userAuth);
     }
 }

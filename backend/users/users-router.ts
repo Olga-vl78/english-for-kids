@@ -10,9 +10,9 @@ usersRouter.route('/users')
   .get(async (request, response) => {
     const hash = request.headers.authorization;
     if (hash) {
-    const status = await usersRepo.getUser(hash);
-    console.log(status);
-    response.json(status);
+    const user = await usersRepo.getUser(hash);
+    console.log(user);
+    response.json(user);
     }
 
   })

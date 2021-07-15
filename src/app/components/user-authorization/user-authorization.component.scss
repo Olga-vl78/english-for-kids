@@ -114,6 +114,7 @@ label {
   background-color: gray;
   border-radius: 5px;
   box-shadow: 0 .1rem .7rem rgba(65, 58, 58, 0.7);
+  pointer-events: none;
 }
 
 .submit-btn_link {
@@ -125,6 +126,7 @@ label {
 
 .activ-btn {
   background-color: rgb(17, 236, 170);
+  pointer-events: unset;
 }
 
 
