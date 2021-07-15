@@ -123,7 +123,24 @@ export class AdminCardsPageComponent implements OnInit {
         console.log('this.newCardPic', this.newCardPic)
         input.value = '';
       }
+    }
+  }
 
+
+  onAudioLoad(input: HTMLInputElement) {
+
+    let selectedFile;
+    if (input.files) {
+      selectedFile = input.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(selectedFile);
+
+      reader.onload = () => {
+        console.log(reader.result);
+        this.newCardAudio = `${reader.result}`;
+        console.log('this.newCardAudio', this.newCardAudio)
+        input.value = '';
+      }
     }
   }
 

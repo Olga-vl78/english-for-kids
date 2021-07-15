@@ -3,6 +3,7 @@ import { ICategory } from 'src/app/interfaces/category';
 import { BackendService } from 'src/app/services/backend/backend.service';
 import {PagesDataService} from "../../services/pages-data/pages-data.service";
 import {ActivatedRoute} from "@angular/router";
+import { Router } from 'express';
 
 @Component({
   selector: 'app-shell',
@@ -21,7 +22,7 @@ export class ShellComponent implements OnInit {
   constructor(
     public readonly pagesDataService: PagesDataService,
     public readonly backendService: BackendService,
-    public readonly activatedRoute: ActivatedRoute
+    public readonly activatedRoute: ActivatedRoute,
   ) {
   }
 
@@ -53,4 +54,7 @@ export class ShellComponent implements OnInit {
     this.isActive = false;
   }
 
+  onLogout() {
+    this.pagesDataService.userHashedInfo = '';
+  }
 }

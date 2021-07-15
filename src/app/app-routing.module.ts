@@ -31,7 +31,7 @@ const routes: Routes = [
         component: TrainWordsComponent
       },
       {
-        path: 'authorization',
+        path: 'admin',
         component: UserAuthorizationComponent
       },
       {

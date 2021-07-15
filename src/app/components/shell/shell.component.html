@@ -45,7 +45,7 @@
       </div>
 
       <div class="login-pic">
-        <a routerLink="/authorization" class="login-pic_link">
+        <a routerLink="/admin" class="login-pic_link">
           <img src="assets/images/login_ico.png" alt="login-icon" class="login-pic_img">
         </a>
       </div>
@@ -63,7 +63,7 @@
           [ngClass]="data.segments[2]?.path === 'cards' ? 'router-active' : ''">
             Cards</div>
         </div>
-        <div class="logout-pic">
+        <div class="logout-pic" (click)="onLogout()">
           <a routerLink="/main" class="login-pic_link">
             <img src="assets/images/logout-ico.png" alt="logout-icon" class="logout-pic_img">
           </a>

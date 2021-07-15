@@ -60,16 +60,17 @@ export class UserAuthorizationComponent implements OnInit {
     console.log(this.login)
     if (this.login !== '' && this.password !== '') {
       this.isUser = true;
+      this.router.navigate(['/admin/categories'])
+      console.log(this.isUser)
     }
     else {
       event.preventDefault();
       this.isUser = false;
       //this.router.navigate(['/main']);
+      console.log(this.isUser)
     }
   }
 
-  onLogout() {
-    this.pagesDataService.userHashedInfo = '';
-  }
+
 
 }

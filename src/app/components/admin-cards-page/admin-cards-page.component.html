@@ -10,7 +10,7 @@
           <input type="text" class="input__card-translation card-input" placeholder="Enter word translation"
             [(ngModel)]="newCardTranslation">
           <input #inputValue type="file" class="input__card-pic_load card-input" (change)="onPictureLoad(inputValue)">
-          <input type="file" class="input__card-audio card-input" placeholder="Add audio" [(ngModel)]="newCardAudio">
+          <input #inputAudio type="file" class="input__card-audio card-input" placeholder="Add audio" [(ngModel)]="newCardAudio" (change)="onAudioLoad(inputAudio)">
         </div>
         <button class="inputs__add-btn" [ngClass]="{'disabled-btn': !isValid}"  (click)="onAddCard(inputText)"><span class="input__btn-pic">
             <img class="input__btn-img" src="assets/images/add_icon.png" alt="edit-icon"></span></button>

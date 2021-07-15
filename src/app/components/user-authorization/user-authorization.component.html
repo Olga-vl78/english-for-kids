@@ -1,9 +1,9 @@
 <main>
   <div class="main__warpper">
-    <div #cover class="cover" (click)="onCoverClick()" [ngClass]="isUser ? 'hidden' : ''">
+    <div #cover class="cover" (click)="onCoverClick()">
       <form class="user__authorization" (click)="onFormClick($event)">
         <div class="user__input-wrap">
-          <label>Name</label>
+          <label>Login</label>
           <input #inputLogin type="text" class="user__name user__input" placeholder="Enter your name"
             pattern="^(?=.*\p{L})[^~?!@#$%*^()_—+=|.,:;/`'>&lt;&quot;]{1,30}$" required (input)="onGetLoginInputValue(inputLogin)">
         </div>
@@ -12,7 +12,7 @@
           <input #inputPassword type="text" class="user__password user__input" placeholder="Enter your password"
             pattern="^(?=.*\p{L})[^~?!@#$%*^()_—+=|.,:;/`'>&lt;&quot;]{1,30}$" required (input)="onGetPasswordInputValue(inputPassword)">
         </div>
-        <button type="button" class="submit-btn" (click)="onSubmit($event); cover.classList.remove('hidden')"
+        <button type="button" class="submit-btn" (click)="onSubmit($event); cover.classList.add('hidden')"
         [ngClass]="inputLogin.validity.valid && inputPassword.validity.valid ? 'activ-btn' : ''">
           <a class="submit-btn_link" routerLink="/admin/categories">Submit</a></button>
       </form>
