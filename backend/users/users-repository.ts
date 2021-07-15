@@ -1,5 +1,4 @@
-import { DbStore } from "../service/db-store";
-import { IUser } from "./user";
+import {DB_STORE, DbStore} from "../service/db-store";
 
 export class UsersRepository {
 
@@ -8,9 +7,13 @@ export class UsersRepository {
     ) {
     }
 
+    isAdmin(hash: string): boolean {
+      return this.dbStore.admins.includes(hash);
+    }
+
     getUser(hash: string) {
-        const userAuth = this.dbStore.users.find((user) => user.hash === hash);
-        console.log(userAuth)
-        return Promise.resolve(userAuth);
+        return Promise.resolve(this.isAdmin(hash) ? {role: 'admin'} : {role: 'user'});
     }
 }
+
+export const USERS_REPOSITORY = new UsersRepository(DB_STORE);

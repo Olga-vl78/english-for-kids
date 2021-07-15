@@ -1,12 +1,14 @@
 export interface ICard {
-    word: string;
-    translation: string;
-    audioSrc: string;
-    image: string;
-    clicks: number;
-    correct: number;
-    wrong: number;
-    errors: number;
-    categoryId: number;
-    id: number;
+  id: number;
+
+  word: string | null;
+  translation: string | null;
+  audioSrc: string | null;
+  image: string | null;
+  categoryId: number | null;
+
+  clicks: number | null;
+  correct: number | null;
+  wrong: number | null;
+  errors: number | null;
 }

@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { ICategory } from 'src/app/interfaces/category';
-import { BackendService } from 'src/app/services/backend/backend.service';
+import {ICategory} from 'src/app/interfaces/category';
+import {BackendService} from 'src/app/services/backend/backend.service';
 import {PagesDataService} from "../../services/pages-data/pages-data.service";
 import {ActivatedRoute} from "@angular/router";
-import { Router } from 'express';
+import {UserService} from "../../services/user/user.service";
 
 @Component({
   selector: 'app-shell',
@@ -23,6 +23,7 @@ export class ShellComponent implements OnInit {
     public readonly pagesDataService: PagesDataService,
     public readonly backendService: BackendService,
     public readonly activatedRoute: ActivatedRoute,
+    public readonly userService: UserService
   ) {
   }
 
@@ -36,8 +37,7 @@ export class ShellComponent implements OnInit {
   }
 
    async onGetCategoriesData() {
-    const categories = await this.backendService.getCategories();
-    this.categoriesData = categories;
+     this.categoriesData = await this.backendService.getCategories();
     return this.categoriesData;
   }
 
@@ -55,6 +55,6 @@ export class ShellComponent implements OnInit {
   }
 
   onLogout() {
-    this.pagesDataService.userHashedInfo = '';
+    this.userService.logout();
   }
 }

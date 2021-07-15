@@ -49,7 +49,6 @@ export class TrainCardComponent implements OnInit {
 
     let audio = new Audio(`${this.cardData?.audioSrc}`);
     audio.play();
-    console.log('audio', audio)
   }
 
 

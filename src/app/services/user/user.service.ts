@@ -1,49 +1,76 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {ICategory} from 'src/app/interfaces/category';
-import { IUser } from 'src/app/interfaces/user';
-import { PagesDataService } from '../pages-data/pages-data.service';
+import {IUser} from "../../interfaces/user";
 
-/*const httpOptions = {
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorisation': 'adminadmin',
-  }
-}*/
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  userHash: string | null = null;
+  user: IUser = {role: 'user'};
+
   constructor(
     private http: HttpClient,
-    private readonly pageDataService: PagesDataService
-  ) { }
+  ) {
+  }
+
+
+  async login(login: string, password: string) {
+
+    this.userHash = btoa(`${login}:${password}`);
+    this.user = await this.fetchUser();
+    return this.user;
+  }
+
+
+  logout() {
+    this.userHash = null;
+    this.user = {role: 'user'};
+  }
+
+  isAdmin() {
+
+    return this.user.role === 'admin';
+  }
+
+  getAuthHeaders(): {[key: string]: string} {
+    if (this.userHash) {
+      return {
+        'Authorization': `Basic ${this.userHash}`
+      }
+    } else {
+      return {};
+    }
+  }
+
 
   handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       console.error('An error occurred:', error.error);
-    } else {
+    }
+    else {
       console.error(`Backend returned code ${error.status}, body was:`, error.error);
     }
     return throwError('Something bad happens; please try again later');
   }
 
-  getUser() {
-    const httpOptions =  { headers: {
-      'Content-Type': 'application/json',
-      'Authorisation': `${this.pageDataService.userHashedInfo}`,
-    }
-  }
-  console.log(httpOptions)
-    return this.http.get('api/users', httpOptions)
+
+  async fetchUser(): Promise<IUser> {
+
+    return this.http.get<IUser>('api/users', {
+        headers: {
+          'Content-Type': 'application/json',
+          ...this.getAuthHeaders(),
+        },
+        observe: 'body',
+        responseType: 'json'
+      })
       .pipe(
         catchError(this.handleError))
       .toPromise();
   }
-
-
 }

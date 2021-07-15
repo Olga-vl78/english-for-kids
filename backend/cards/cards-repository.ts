@@ -1,4 +1,4 @@
-import { DbStore } from "../service/db-store";
+import {DB_STORE, DbStore} from "../service/db-store";
 import { ICard } from "./card";
 import { getNextId } from "../service/counter";
 
@@ -35,15 +35,38 @@ export class CardsRepository {
         return Promise.reject(new Error('Word is not found'));
       } else {
         const selectedCard = selectedCategoryCards[cardIdx];
-        console.log(selectedCard)
+
+        if (cardData.word != null) {
           selectedCard.word = cardData.word;
+        }
+
+        if (cardData.translation != null) {
           selectedCard.translation = cardData.translation;
+        }
+
+        if (cardData.audioSrc != null) {
           selectedCard.audioSrc = cardData.audioSrc;
+        }
+
+        if (cardData.image != null) {
           selectedCard.image = cardData.image;
+        }
+
+        if (cardData.correct != null) {
           selectedCard.correct = cardData.correct;
+        }
+
+        if (cardData.wrong != null) {
           selectedCard.wrong = cardData.wrong;
+        }
+
+        if (cardData.clicks != null) {
           selectedCard.clicks = cardData.clicks;
+        }
+
+        if (cardData.errors != null) {
           selectedCard.errors = cardData.errors;
+        }
         return Promise.resolve(selectedCard);
       }
     }
@@ -52,17 +75,14 @@ export class CardsRepository {
 
   deleteCard(categoryId: number, cardId: number): Promise<void> {
     const selectedCategoryCards = this.dbStore.cardsStore.filter((card) => card.categoryId === categoryId);
-    console.log(selectedCategoryCards.length)
     if (selectedCategoryCards.length > 0) {
       const cardIdx = selectedCategoryCards.findIndex((card) => card.id === cardId);
-      console.log(cardIdx);
 
       if (cardIdx < 0) {
         return Promise.reject(new Error('Word is not found'));
       }
       else {
         selectedCategoryCards.splice(cardIdx, 1);
-        console.log(selectedCategoryCards)
         return Promise.resolve();
       }
     }
@@ -70,3 +90,5 @@ export class CardsRepository {
   }
 
 }
+
+export const CARDS_REPOSITORY = new CardsRepository(DB_STORE);

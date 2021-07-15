@@ -14,6 +14,4 @@ export class PagesDataService {
 
   counter: number = 0;
 
-  userHashedInfo: string = '';
-
 }

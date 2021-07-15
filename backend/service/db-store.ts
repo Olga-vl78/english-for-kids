@@ -1,6 +1,5 @@
 import {ICard} from "../cards/card";
 import {ICategory} from "../categories/category";
-import { IUser } from "../users/user";
 
 export class DbStore {
 
@@ -834,16 +833,8 @@ export class DbStore {
     },
   ];
 
-  users: IUser[] = [
-    {
-      hash: 'adminadmin',
-      status: 'admin',
-    },
-    {
-      hash: 'useruser',
-      status: 'user'
-    },
-
+  admins: string[] = [
+    'Basic YWRtaW46YWRtaW4='
   ];
 
   /*
@@ -1559,3 +1550,5 @@ export class DbStore {
   ];*/
 
 }
+
+export const DB_STORE = new DbStore();

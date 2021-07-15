@@ -1,4 +1,3 @@
 export interface IUser {
-  login: string,
-  password: string,
+  role: 'admin' | 'user'
 }

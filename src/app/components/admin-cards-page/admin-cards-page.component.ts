@@ -37,7 +37,8 @@ export class AdminCardsPageComponent implements OnInit {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly backendService: BackendService
-    ) {}
+  ) {
+  }
 
 
   ngOnInit(): void {
@@ -48,8 +49,8 @@ export class AdminCardsPageComponent implements OnInit {
       this.catId = Number(catId);
       this.onGetCategoryName();
       this.getCategoryCards(this.catId)
-      .then((data) => this.cardsData = data)
-      .then((cardsData) =>  this.renderedCards = cardsData.slice(0, LIMITS_CARDS));
+        .then((data) => this.cardsData = data)
+        .then((cardsData) => this.renderedCards = cardsData.slice(0, LIMITS_CARDS));
       this.currentIndex = LIMITS_CARDS;
     }));
 
@@ -63,10 +64,10 @@ export class AdminCardsPageComponent implements OnInit {
   async onGetCategoryName() {
     const categories = await this.backendService.getCategories();
     const cat = categories.find((category) =>
-        category.id === this.catId);
-        if(cat) {
-          this.currentCategoryName = cat.category;
-        }
+      category.id === this.catId);
+    if (cat) {
+      this.currentCategoryName = cat.category;
+    }
   }
 
   resetRenderedCards() {
@@ -118,9 +119,7 @@ export class AdminCardsPageComponent implements OnInit {
       reader.readAsDataURL(selectedFile);
 
       reader.onload = () => {
-        console.log(reader.result);
         this.newCardPic = `${reader.result}`;
-        console.log('this.newCardPic', this.newCardPic)
         input.value = '';
       }
     }
@@ -136,9 +135,7 @@ export class AdminCardsPageComponent implements OnInit {
       reader.readAsDataURL(selectedFile);
 
       reader.onload = () => {
-        console.log(reader.result);
         this.newCardAudio = `${reader.result}`;
-        console.log('this.newCardAudio', this.newCardAudio)
         input.value = '';
       }
     }
@@ -148,22 +145,21 @@ export class AdminCardsPageComponent implements OnInit {
 
     let audio = new Audio(audioFile);
     audio.play();
-    console.log('audioFile', audio)
   }
 
   onWatchCard(cardData: ICard) {
-    const oldValue = this.cardInfoMap.get(cardData) || { editMode: false, watchMode: true };
-    this.cardInfoMap.set(cardData, { ...oldValue, editMode: false, watchMode: true });
+    const oldValue = this.cardInfoMap.get(cardData) || {editMode: false, watchMode: true};
+    this.cardInfoMap.set(cardData, {...oldValue, editMode: false, watchMode: true});
   }
 
   onEditCard(cardData: ICard) {
-    const oldValue = this.cardInfoMap.get(cardData) || { editMode: true, watchMode: false };
-    this.cardInfoMap.set(cardData, { ...oldValue, editMode: true, watchMode: false });
+    const oldValue = this.cardInfoMap.get(cardData) || {editMode: true, watchMode: false};
+    this.cardInfoMap.set(cardData, {...oldValue, editMode: true, watchMode: false});
   }
 
   onSaveCard(cardData: ICard) {
-    const oldValue = this.cardInfoMap.get(cardData) || { editMode: false, watchMode: false };
-    this.cardInfoMap.set(cardData, { ...oldValue, editMode: false, watchMode: false });
+    const oldValue = this.cardInfoMap.get(cardData) || {editMode: false, watchMode: false};
+    this.cardInfoMap.set(cardData, {...oldValue, editMode: false, watchMode: false});
     this.backendService.updateCard(this.catId, cardData, cardData.id);
   }
 
@@ -178,14 +174,12 @@ export class AdminCardsPageComponent implements OnInit {
 
   onAddFile(cardData: ICard) {
     cardData.image = this.newCardPic;
-    console.log(this.cardsData);
   }
 
   onScrollMove(event: Event) {
     this.scrollElement = event.target as HTMLElement;
     let elem = this.scrollElement;
     if (elem.scrollTop + elem.clientHeight >= elem.scrollHeight) {
-      console.log("time to add");
       if (this.currentIndex < this.cardsData.length) {
         this.currentIndex += CARDS_STEP;
         this.renderedCards = this.cardsData.slice(0, this.currentIndex);
@@ -199,9 +193,9 @@ export class AdminCardsPageComponent implements OnInit {
 
   onInputValidation(input: HTMLInputElement) {
     if (input.value) {
-      console.log(input.value);
-     this.isValid = true;
-    } else this.isValid = false;
+      this.isValid = true;
+    }
+    else this.isValid = false;
   }
 
   clearInputValue(input: HTMLInputElement) {
@@ -210,7 +204,6 @@ export class AdminCardsPageComponent implements OnInit {
   }
 
 }
-
 
 
 export interface IExtraCardInfo {

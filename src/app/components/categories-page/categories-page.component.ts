@@ -92,7 +92,6 @@ export class CategoriesPageComponent implements OnInit, OnDestroy {
     }
 
     this.pagesDataService.audioArray = this.getRandomValues(audioFiles);
-    console.log('this.pagesDataService.audioArray ', this.pagesDataService.audioArray)
   }
 
 
@@ -170,7 +169,6 @@ export class CategoriesPageComponent implements OnInit, OnDestroy {
   }
 
   onSuccess(card: ICard) {
-    console.log("card before", card)
     card.correct += 1;
     this.backendService.updateCard(this.catId, card, card.id);
   }

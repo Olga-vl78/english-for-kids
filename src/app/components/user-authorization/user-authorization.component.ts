@@ -1,30 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { response } from 'express';
-import { BackendService } from 'src/app/services/backend/backend.service';
-import { PagesDataService } from 'src/app/services/pages-data/pages-data.service';
-import { UserService } from 'src/app/services/user/user.service';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {PagesDataService} from 'src/app/services/pages-data/pages-data.service';
+import {UserService} from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-user-authorization',
   templateUrl: './user-authorization.component.html',
   styleUrls: ['./user-authorization.component.scss']
 })
-export class UserAuthorizationComponent implements OnInit {
+export class UserAuthorizationComponent  {
 
   login: string = '';
   password: string = '';
-  isActiveBtn: boolean = false;
-  isUser: boolean = false;
+  wrongPassword = false;
 
   constructor(
     private readonly router: Router,
     private readonly pagesDataService: PagesDataService,
     private readonly userService: UserService
   ) { }
-
-  ngOnInit(): void {
-  }
 
 
   onCoverClick() {
@@ -35,10 +29,6 @@ export class UserAuthorizationComponent implements OnInit {
     event.stopPropagation();
   }
 
-  getHashInfo(login: string, password: string) {
-    const hashedInfo = `${login}${password}`;
-    return hashedInfo;
-  }
 
   onGetLoginInputValue(input: HTMLInputElement) {
     if(input.validity.valid) {
@@ -52,25 +42,17 @@ export class UserAuthorizationComponent implements OnInit {
     }
   }
 
-  async onSubmit(event: Event) {
-    this.pagesDataService.userHashedInfo = this.getHashInfo(this.login, this.password);
-    //const response = await this.userService.getUser();
-    //console.log('response', response)
-    //console.log(response.headers.get('Authorisation'));
-    console.log(this.login)
-    if (this.login !== '' && this.password !== '') {
-      this.isUser = true;
+  async onSubmit(cover: HTMLDivElement) {
+
+    const user = await this.userService.login(this.login, this.password);
+
+    if (user.role === 'admin') {
+      this.wrongPassword = false;
       this.router.navigate(['/admin/categories'])
-      console.log(this.isUser)
-    }
-    else {
-      event.preventDefault();
-      this.isUser = false;
-      //this.router.navigate(['/main']);
-      console.log(this.isUser)
+      cover.classList.add('hidden');
+    } else {
+      this.wrongPassword = true;
     }
   }
-
-
 
 }

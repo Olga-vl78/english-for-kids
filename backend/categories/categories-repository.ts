@@ -1,4 +1,4 @@
-import {DbStore} from "../service/db-store";
+import {DB_STORE, DbStore} from "../service/db-store";
 import {ICategory} from "./category";
 import {getNextId} from "../service/counter";
 
@@ -22,7 +22,6 @@ export class CategoriesRepository {
 
   getCategory(id: number): Promise<ICategory | undefined> {
     const category = this.dbStore.categoriesStore.find((category) => category.id === id);
-    console.log(category)
     return Promise.resolve(category);
   }
 
@@ -36,7 +35,6 @@ export class CategoriesRepository {
       id: getNextId()
     }
     this.dbStore.categoriesStore.push(newCategory);
-    console.log(newCategory)
     return Promise.resolve(newCategory);
   }
 
@@ -74,3 +72,5 @@ export class CategoriesRepository {
     });
   }
 }
+
+export const CATEGORIES_REPOSITORY = new CategoriesRepository(DB_STORE);

@@ -9,12 +9,12 @@
         </div>
         <div class="user__input-wrap">
           <label>Password</label>
-          <input #inputPassword type="text" class="user__password user__input" placeholder="Enter your password"
+          <input #inputPassword type="password" class="user__password user__input" placeholder="Enter your password"
             pattern="^(?=.*\p{L})[^~?!@#$%*^()_—+=|.,:;/`'>&lt;&quot;]{1,30}$" required (input)="onGetPasswordInputValue(inputPassword)">
         </div>
-        <button type="button" class="submit-btn" (click)="onSubmit($event); cover.classList.add('hidden')"
-        [ngClass]="inputLogin.validity.valid && inputPassword.validity.valid ? 'activ-btn' : ''">
-          <a class="submit-btn_link" routerLink="/admin/categories">Submit</a></button>
+        <button type="button" class="submit-btn" (click)="onSubmit(cover)"
+        [ngClass]="inputLogin.validity.valid && inputPassword.validity.valid ? 'activ-btn' : ''">Submit</button>
+        <div *ngIf="wrongPassword">Wrong login or password</div>
       </form>
     </div>
   </div>

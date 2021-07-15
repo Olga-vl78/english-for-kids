@@ -58,7 +58,6 @@ export class TrainWordsComponent implements OnInit {
   }
 
   updatePageText() {
-    console.log("this.diffcards", this.difficultCardsArray === [])//разобраться!!!!!!!!!!!!!!!!!!!!
     if (this.difficultCardsArray) {
       this.pageText = ''
     } else {
